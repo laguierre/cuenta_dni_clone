@@ -8,38 +8,44 @@ class LogInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery
-        .of(context)
-        .size;
+    var size = MediaQuery.of(context).size;
     double heightContainer = size.height * 0.35;
     return SafeArea(
         child: Scaffold(
-            backgroundColor: Colors.white,
-            body: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.only(top: size.height * 0.08),
-              width: double.infinity,
-              height: heightContainer,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(radiusContainerLogin),
-                      bottomLeft: Radius.circular(radiusContainerLogin)),
-                  gradient: LinearGradient(colors: gradientCuentaDNI)),
-              child: Column(children: [
-                SvgPicture.asset(logoCuentaDNI,
-                    color: Colors.white, height: size.height * 0.12)
-              ],),
-            ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.only(top: size.height * 0.08),
+            width: double.infinity,
+            height: heightContainer,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(radiusContainerLogin),
+                    bottomLeft: Radius.circular(radiusContainerLogin)),
+                gradient: LinearGradient(colors: gradientCuentaDNI)),
+          ),
+          Positioned(
+              top: size.height * 0.15,
+              child: SvgPicture.asset(logoCuentaDNI,
+                  color: Colors.white, height: size.height * 0.12)),
+          Expanded(
+            child: Container(
+              color: Colors.red,
+                child: const CircleAvatar(
+                  backgroundImage: AssetImage(avatarCuentaDNI),
+                  radius: 55,
+                )),
+          ),
+        ],
+      ),
 
-              /*Positioned(
+      /*Positioned(
             top: size.height * 0.1,
             child:
-        Positioned(
-            top: heightContainer - radiusAvatar,
-            child: const CircleAvatar(
-              backgroundImage: AssetImage(avatarCuentaDNI),
-              radius: 55,
-            )),
+
         Positioned(
           top: (heightContainer - radiusAvatar) + 150,
           child: Text(
@@ -47,8 +53,7 @@ class LogInPage extends StatelessWidget {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
           ),
         ),*/
-
-            ));
+    ));
   }
 }
 
@@ -61,16 +66,20 @@ class _Inputs extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
           decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(
-                  width: 3,
-                  color: Colors.black,
-                )),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(width: 3, color: Colors.black)),
-          )),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+              width: 3,
+              color: Colors.black,
+            )),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(width: 3, color: Colors.black)),
+      )),
     );
   }
 }
+
+/*
+
+ */
