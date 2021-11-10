@@ -4,3 +4,8 @@ const delaySplash = 3000;
 
 ///Image Routes///
 const String logoCuentaDNI = 'lib/assets/images/cuenta-dni_1.svg';
+const String avatarCuentaDNI = 'lib/assets/images/avatar.png';
+
+///Constants
+const double radiusContainerLogin = 30.0;
+const double radiusAvatar = 55.0;

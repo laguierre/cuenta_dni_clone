@@ -1,3 +1,4 @@
+import 'package:cuenta_dni_clone/src/pages/login_page.dart';
 import 'package:cuenta_dni_clone/src/pages/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Cuenta DNI Clone',
-      home: SplashPage(),
+      home: LogInPage(),
     );
   }
 }

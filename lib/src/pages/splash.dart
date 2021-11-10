@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'home_page.dart';
+import 'login_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -15,11 +16,11 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    /*Future.delayed(
+    Future.delayed(
         Duration(milliseconds: delaySplash),
         () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => HomePage())));
-*/
+            MaterialPageRoute(builder: (BuildContext context) => LogInPage())));
+
     super.initState();
   }
 
