@@ -10,50 +10,66 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     double heightContainer = size.height * 0.35;
+    double heightAvatar = heightContainer - radiusAvatar;
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(top: size.height * 0.08),
-            width: double.infinity,
-            height: heightContainer,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(radiusContainerLogin),
-                    bottomLeft: Radius.circular(radiusContainerLogin)),
-                gradient: LinearGradient(colors: gradientCuentaDNI)),
-          ),
-          Positioned(
-              top: size.height * 0.15,
-              child: SvgPicture.asset(logoCuentaDNI,
-                  color: Colors.white, height: size.height * 0.12)),
-          Expanded(
-            child: Container(
-              color: Colors.red,
-                child: const CircleAvatar(
+      child: Scaffold(
+        body: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Container(
+                height: double.infinity,
+                width: double.infinity,
+                color: Colors.white),
+            Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: heightContainer,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(radiusContainerLogin),
+                      bottomLeft: Radius.circular(radiusContainerLogin)),
+                  gradient: LinearGradient(colors: gradientCuentaDNI)),
+              child: SvgPicture.asset(
+                logoCuentaDNI,
+                color: Colors.white,
+                height: size.height * 0.13,
+              ),
+            ),
+            Positioned(
+                top: heightAvatar,
+                child: CircleAvatar(
                   backgroundImage: AssetImage(avatarCuentaDNI),
-                  radius: 55,
+                  radius: radiusAvatar,
                 )),
-          ),
-        ],
+            Positioned(
+                top: heightAvatar + 150,
+                child: Text(
+                  '¡Hola Juan Carlos Perez!',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                )),
+            Positioned(
+                top: 450,
+                child: SingleChildScrollView(
+                    child:
+                        Column(
+                          children: [
+                            Container(
+                              width: size.width,
+                              child: _Inputs(),
+                            ),
+                            SizedBox(height: size.height * 0.02),
+                            TextButton(onPressed: (){}, child: Text("Olvidé mi contraseña", style: TextStyle(color: Colors.black, fontSize: 20),))
+                          ],
+                        )
+
+
+                ))
+
+          ],
+
+        ),
       ),
-
-      /*Positioned(
-            top: size.height * 0.1,
-            child:
-
-        Positioned(
-          top: (heightContainer - radiusAvatar) + 150,
-          child: Text(
-            '¡Hola Juan Carlos Perez!',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
-          ),
-        ),*/
-    ));
+    );
   }
 }
 
@@ -62,12 +78,18 @@ class _Inputs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: TextField(
           decoration: InputDecoration(
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
+            hintText: 'Contraseña',
+        contentPadding: EdgeInsets.only(left: size.width * 0.1),
+        hintStyle: TextStyle(fontSize: size.height*0.03),
+        enabledBorder: OutlineInputBorder(
+
+            borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
               width: 3,
               color: Colors.black,
