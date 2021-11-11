@@ -52,20 +52,30 @@ class LogInPage extends StatelessWidget {
                 child: SingleChildScrollView(
                     child:
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               width: size.width,
                               child: _Inputs(),
                             ),
                             SizedBox(height: size.height * 0.02),
-                            TextButton(onPressed: (){}, child: Text("Olvidé mi contraseña", style: TextStyle(color: Colors.black, fontSize: 20),))
+                            TextButton(onPressed: (){}, child: Text("Olvidé mi contraseña", style: TextStyle(color: Colors.black, fontSize: 20))),
+                          SizedBox(height: 20),
+                            Container(
+                                alignment: Alignment.center, width: size.width, color: Colors.red, child: Text('Ingresar', style: TextStyle(color: Colors.white, fontSize: 22))),
+SizedBox(height: 30),
+                            Container(height: 80, color: Colors.white70, child: Row(children: [
+                              Icon(Icons.eleven_mp, color: Colors.green),
+                              Text('Ingresas con huella')
+                            ],),)
                           ],
-                        )
+
+                        ),
 
 
-                ))
 
-          ],
+                )),
+        ],
 
         ),
       ),
