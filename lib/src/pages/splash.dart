@@ -17,9 +17,15 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Future.delayed(
-        Duration(milliseconds: delaySplash),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => LogInPage())));
+        const Duration(milliseconds: delaySplash),
+        () => Navigator.of(context).pushReplacement(PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 500),
+            pageBuilder: (context, animation, _) {
+              return FadeTransition(
+                opacity: animation,
+                child: const LogInPage(),
+              );
+            })));
 
     super.initState();
   }
@@ -45,25 +51,25 @@ class _SplashPageState extends State<SplashPage> {
                 color: Colors.white, height: size.height * 0.12),
           ),
           Positioned(
-              bottom: (size.height/2) * 0.43,
+              bottom: (size.height / 2) * 0.43,
               child: Container(
                 width: size.width,
                 alignment: Alignment.topCenter,
                 child: Text(
-                  'Inicializando',
+                  'Inicializando...',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               )),
-          Positioned(bottom: (size.height/2) * 0.3,
-            child: Container(
-              alignment: Alignment.center,
-              width: size.width,
-              child: CircularProgressIndicator(backgroundColor: Colors.white),
-            )
-          ),
+          Positioned(
+              bottom: (size.height / 2) * 0.3,
+              child: Container(
+                alignment: Alignment.center,
+                width: size.width,
+                child: CircularProgressIndicator(
+                    color: Colors.white, backgroundColor: kPrimaryColor,),
+              )),
           Positioned(
               bottom: 50,
-
               child: Container(
                 padding: EdgeInsets.only(right: 20),
                 width: size.width,
