@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Cuenta DNI Clone',
-      home: SplashPage(),
+      home: HomePage(),
     );
   }
 }
