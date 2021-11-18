@@ -14,14 +14,66 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
+            backgroundColor: kBackgroundColor,
             body: Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        _AppBarHomePage(),
-      ],
-    )));
+              alignment: Alignment.topCenter,
+              children: [
+                SingleChildScrollView(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              bottomRight:
+                                  Radius.circular(radiusContainerLogin),
+                              bottomLeft:
+                                  Radius.circular(radiusContainerLogin))),
+                      width: double.infinity,
+                      height: size.height * appBarWhitePercent,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            height: double.infinity,
+                            color: kTextColor,
+                            width: 1,
+                          ),
+                          Positioned(
+                              left: 8,
+                              bottom: 15,
+                              child: Container(
+                                padding: EdgeInsets.only(right: 15),
+                                width: size.width / 2,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'lib/assets/images/send-money.png',
+                                      height: size.height * 0.043,
+                                    ),
+                                    Text(
+                                      'Enviar dinero',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 20),
+                                    )
+                                  ],
+                                ),
+                              )),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+                _AppBarHomePage(),
+              ],
+            )));
   }
 }
 
@@ -31,7 +83,8 @@ class _AppBarHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    double height = MediaQuery.of(context).size.height * 0.23;
+    double height = MediaQuery.of(context).size.height * appBarGreenPercent;
+    String account = '\$ 1000,00';
     return Container(
       width: double.infinity,
       height: height,
@@ -65,32 +118,35 @@ class _AppBarHomePage extends StatelessWidget {
                       ],
                     ),
                   )),
-              Flexible(flex: 3,child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SvgPicture.asset(
-                    logoCuentaDNI,
-                    color: Colors.white,
-                    height: size.height * 0.09,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              Flexible(
+                  flex: 3,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('\$ 1000,00',
-                          style: TextStyle(fontSize: 40, color: Colors.white)),
-                      IconButton(
-                          splashColor: Colors.grey,
-                          splashRadius: 30,
-                          icon: Image.asset(
-                            'lib/assets/images/view.png',
-                            color: Colors.white,
-                            height: 28,
-                          ),
-                          onPressed: () {}),
+                      SvgPicture.asset(
+                        logoCuentaDNI,
+                        color: Colors.white,
+                        height: size.height * 0.09,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(account,
+                              style:
+                                  TextStyle(fontSize: 40, color: Colors.white)),
+                          IconButton(
+                              splashColor: Colors.grey,
+                              splashRadius: 30,
+                              icon: Image.asset(
+                                'lib/assets/images/view.png',
+                                color: Colors.white,
+                                height: 28,
+                              ),
+                              onPressed: () {}),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              )),
+                  )),
               Flexible(
                   flex: 1,
                   child: Column(

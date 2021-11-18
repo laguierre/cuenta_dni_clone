@@ -11,7 +11,10 @@ const String fingerPrintScan = 'lib/assets/images/fingerprint-scan.png';
 const double radiusContainerLogin = 30.0;
 const double radiusAvatar = 55.0;
 const delayLogIn = 1000;
+const appBarGreenPercent = 0.23;
+const appBarWhitePercent = 0.32;
 
 ///Colors
 Color kPrimaryColor = Color(0xFF089033);
 Color kBackgroundColor = Color(0xFFf2f2f2);
+Color kTextColor = Colors.black;
