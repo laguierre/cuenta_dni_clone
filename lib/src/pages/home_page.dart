@@ -1,5 +1,6 @@
 import 'package:cuenta_dni_clone/src/utils/constants.dart';
 import 'package:cuenta_dni_clone/src/utils/gradients.dart';
+import 'package:cuenta_dni_clone/src/widgets/btn_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,59 +22,130 @@ class _HomePageState extends State<HomePage> {
             body: Stack(
               alignment: Alignment.topCenter,
               children: [
-                SingleChildScrollView(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              bottomRight:
-                                  Radius.circular(radiusContainerLogin),
-                              bottomLeft:
-                                  Radius.circular(radiusContainerLogin))),
-                      width: double.infinity,
-                      height: size.height * appBarWhitePercent,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            height: double.infinity,
-                            color: kTextColor,
-                            width: 1,
-                          ),
-                          Positioned(
-                              left: 8,
-                              bottom: 15,
-                              child: Container(
-                                padding: EdgeInsets.only(right: 15),
-                                width: size.width / 2,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'lib/assets/images/send-money.png',
-                                      height: size.height * 0.043,
-                                    ),
-                                    Text(
-                                      'Enviar dinero',
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 20),
-                                    )
-                                  ],
-                                ),
-                              )),
-                        ],
-                      ),
-                    ),
-                  ],
-                )),
+                _SingleScrollView(size: size),
                 _AppBarHomePage(),
               ],
             )));
+  }
+}
+
+class _SingleScrollView extends StatelessWidget {
+  const _SingleScrollView({
+    Key? key,
+    required this.size,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(radiusContainerLogin),
+                  bottomLeft: Radius.circular(radiusContainerLogin))),
+          width: double.infinity,
+          height: size.height * appBarWhitePercent,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: double.infinity,
+                color: kTextColor,
+                width: 1,
+              ),
+              Positioned(
+                  left: 10,
+                  bottom: 18,
+                  child: Container(
+                    padding: EdgeInsets.only(right: 15),
+                    width: size.width / 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/assets/images/send-money.png',
+                          height: size.height * 0.043,
+                        ),
+                        const Text(
+                          'Enviar dinero',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        )
+                      ],
+                    ),
+                  )),
+              Positioned(
+                  right: 10,
+                  bottom: 18,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 15),
+                    width: size.width / 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/assets/images/money-withdrawal.png',
+                          height: size.height * 0.043,
+                        ),
+                        Text(
+                          'Enviar dinero',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        )
+                      ],
+                    ),
+                  )),
+            ],
+          ),
+        ),
+        Container(
+            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                BtnSquareImage(
+                    image: 'lib/assets/images/barcode.png',
+                    text: 'Pagar con \nClave DNI',
+                    onTap: () {}),
+                BtnSquareImage(
+                    image: 'lib/assets/images/currency-exchange.png',
+                    text: 'Transferir\n',
+                    onTap: () {}),
+                BtnSquareImage(
+                    image: 'lib/assets/images/withdraw-money.png',
+                    text: 'Extraer sin\ntarjeta',
+                    onTap: () {}),
+              ],
+            )),
+        Container(
+            padding: EdgeInsets.symmetric(horizontal: 0,vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                BtnSquareImage(
+                    image: 'lib/assets/images/bill.png',
+                    text: 'Pagar\nservicios',
+                    onTap: () {}),
+                BtnSquareImage(
+                    image: 'lib/assets/images/mobile.png',
+                    text: 'Recargar\ncelular',
+                    onTap: () {}),
+                BtnSquareImage(
+                    image: 'lib/assets/images/bus.png',
+                    text: 'Recargar\ntransporte',
+                    onTap: () {}),
+              ],
+            ))
+      ],
+    ));
   }
 }
 
