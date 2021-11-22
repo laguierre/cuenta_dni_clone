@@ -1,4 +1,4 @@
-import 'package:cuenta_dni_clone/src/pages/home_page.dart';
+import 'package:cuenta_dni_clone/src/pages/home_page/home_page.dart';
 import 'package:cuenta_dni_clone/src/utils/constants.dart';
 import 'package:cuenta_dni_clone/src/utils/gradients.dart';
 import 'package:cuenta_dni_clone/src/widgets/btn_widgets.dart';
@@ -82,7 +82,7 @@ class _LogInPageState extends State<LogInPage> {
                       SizedBox(height: (_position) * 20),
                       Container(
                         alignment: Alignment.center,
-                        child: const Text('¡Hola Juan Carlos Perez!',
+                        child: const Text(userName,
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w700)),
                       ),
@@ -176,7 +176,7 @@ class _PasswordLogIn extends StatelessWidget {
       ),
       SizedBox(height: size.height * 0.025),
       BtnGrey(
-          label: 'Contraseña',
+          label: 'Ingresar',
           border: kBorderRadius,
           height: size.height * 0.05,
           width: widthColumn,

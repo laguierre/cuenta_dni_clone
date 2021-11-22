@@ -3,8 +3,7 @@ import 'package:cuenta_dni_clone/src/utils/gradients.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'home_page.dart';
-import 'login_page.dart';
+import '../login_page/login_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
