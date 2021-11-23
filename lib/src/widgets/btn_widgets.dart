@@ -35,6 +35,8 @@ class BtnGrey extends StatelessWidget {
               decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(border/2),
+                      bottomRight: Radius.circular(border/2),
                       bottomLeft: Radius.circular(border),
                       topRight: Radius.circular(border))),
               child: Text(label,

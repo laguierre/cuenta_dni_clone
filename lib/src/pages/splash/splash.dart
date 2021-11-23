@@ -18,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(
         const Duration(milliseconds: delaySplash),
         () => Navigator.of(context).pushReplacement(PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 500),
+            transitionDuration: const Duration(milliseconds: 250),
             pageBuilder: (context, animation, _) {
               return FadeTransition(
                 opacity: animation,
