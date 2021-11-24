@@ -154,9 +154,9 @@ class _HomePageState extends State<HomePage>
                         SizedBox(height: size.height * 0.01),
                         _LastDetailsMoves(date: '22/11', cost: '\$ -1.215,45', details: 'Compra pei cdni',),
                         SizedBox(height: size.height * 0.01),
-                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.215,45', details: 'Compra pei cdni',),
+                        _LastDetailsMoves(date: '22/11', cost: '\$ -47,03', details: 'Compra pei cdni',),
                         SizedBox(height: size.height * 0.01),
-                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.215,45', details: 'Compra pei cdni',),
+                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.018,52', details: 'Compra pei cdni',),
 
                       ],
                     ))),
