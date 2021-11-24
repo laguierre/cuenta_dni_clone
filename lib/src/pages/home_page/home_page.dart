@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage>
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     _controller.stop();
-    _animation = Tween<double>(begin: 0, end: 300).animate(_controller)
+    _animation = Tween<double>(begin: 0, end: 280).animate(_controller)
       ..addListener(() {
         setState(() {});
       });
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage>
             },
             child: Container(
               alignment: Alignment.topLeft,
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 28),
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 28),
               width: size.width * 0.87,
               height: size.height * 0.1 + _animation.value,
               decoration: BoxDecoration(
@@ -141,32 +141,23 @@ class _HomePageState extends State<HomePage>
                     visible: isLastMoves,
                     child: Expanded(
                         child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      //mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(height: size.height * 0.01),
                         Divider(
                           thickness: 2,
                         ),
                         SizedBox(height: size.height * 0.01),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '23/11',
-                                  style: TextStyle(fontSize: 15)
-                                ),
-                                Text(
-                                  'Compra pei cdni',
-                                  style: TextStyle(fontSize: 20)
-                                ),
-                              ],
-                            ),
-                            Text('-3.555,05', style: TextStyle(fontSize: 20),),
-                          ],
-                        )
+                        _LastDetailsMoves(date: '23/11', cost: '\$ -3.555,05', details: 'Compra pei cdni',),
+                        SizedBox(height: size.height * 0.01),
+                        _LastDetailsMoves(date: '22/11', cost: '\$ -903,25', details: 'Compra pei cdni',),
+                        SizedBox(height: size.height * 0.01),
+                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.215,45', details: 'Compra pei cdni',),
+                        SizedBox(height: size.height * 0.01),
+                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.215,45', details: 'Compra pei cdni',),
+                        SizedBox(height: size.height * 0.01),
+                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.215,45', details: 'Compra pei cdni',),
+
                       ],
                     ))),
               ]),
@@ -208,7 +199,7 @@ class _HomePageState extends State<HomePage>
                               setState(() {
                                 isDrawerOn = true;
                               });
-                              /*TODO drawer*/
+
                             }),
                       ],
                     ),
@@ -264,6 +255,42 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
+    );
+  }
+}
+
+class _LastDetailsMoves extends StatelessWidget {
+  const _LastDetailsMoves({
+    Key? key, required this.date, required this.details, required this.cost,
+  }) : super(key: key);
+
+  final String date, details, cost;
+
+  @override
+  Widget build(BuildContext context) {
+    var size= MediaQuery.of(context).size;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              date,
+              style: TextStyle(fontSize: 15),
+            ),
+            Text(
+              details,
+              style: TextStyle(fontSize: 20)
+            ),
+          ],
+        ),
+        Spacer(),
+        Text(cost, style: TextStyle(fontSize: 20)),
+
+      ],
     );
   }
 }
@@ -517,7 +544,6 @@ class _Drawer extends StatefulWidget {
   @override
   _DrawerState createState() => _DrawerState();
 }
-
 class _DrawerState extends State<_Drawer> {
   @override
   Widget build(BuildContext context) {
