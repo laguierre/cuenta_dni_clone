@@ -16,6 +16,7 @@ const String userName = '¡Hola Juan Carlos Perez!';
 
 ///Constants
 const double radiusContainerLogin = 30.0;
+const double radiusRoundedBtn = 20.0;
 const double radiusAvatar = 55.0;
 const delayLogIn = 1000;
 const appBarGreenPercent = 0.23;

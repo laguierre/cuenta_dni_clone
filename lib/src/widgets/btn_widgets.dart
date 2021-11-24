@@ -164,50 +164,6 @@ class BtnSquareImage extends StatelessWidget {
   }
 }
 
-class BtnRounded extends StatelessWidget {
-  const BtnRounded(
-      {Key? key, this.height = 50, this.width = 200, required this.onTap})
-      : super(key: key);
-
-  final double height, width;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Material(
-      borderRadius: BorderRadius.circular(30),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(30),
-        highlightColor: Colors.red.withOpacity(0.5),
-        splashColor: Colors.red.withOpacity(0.5),
-        onTap: onTap,
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            boxShadow: [kBoxShadow],
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              FaIcon(FontAwesomeIcons.chevronDown),
-              SizedBox(width: 20),
-              Text(
-                'Últimos movimientos',
-                style: TextStyle(fontSize: size.height * 0.025),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class FAB extends StatelessWidget {
   const FAB(
       {Key? key,
@@ -226,14 +182,14 @@ class FAB extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Material(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(radiusContainerLogin / 6),
           bottomRight: Radius.circular(radiusContainerLogin / 6),
           topRight: Radius.circular(radiusContainerLogin / 2),
           bottomLeft: Radius.circular(radiusContainerLogin / 2)),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: InkWell(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(radiusContainerLogin / 6),
             bottomRight: Radius.circular(radiusContainerLogin / 6),
             topRight: Radius.circular(radiusContainerLogin / 2),

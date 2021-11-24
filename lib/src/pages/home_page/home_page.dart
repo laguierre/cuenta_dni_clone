@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 bool isDrawerOn = false;
+bool isLastMoves = false;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,12 +17,33 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> _animation;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    _controller.stop();
+    _animation = Tween<double>(begin: 0, end: 300).animate(_controller)
+      ..addListener(() {
+        setState(() {});
+      });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     final PageController _pageController = PageController(initialPage: 0);
-
     double height = MediaQuery.of(context).size.height * appBarGreenPercent;
     String account = '\$ 1000,00';
 
@@ -31,21 +53,123 @@ class _HomePageState extends State<HomePage> {
             body: Stack(
               //alignment: Alignment.topCenter,
               children: [
-                _SingleScrollView(size: size, pageController: _pageController),
+                SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _SendRecieveBtn(size: size),
+                        _BtnTable(),
+                        _VendingBanner(
+                            size: size, pageController: _pageController),
+                        SizedBox(height: size.height * 0.05),
+                        _LastMoves(size),
+                        SizedBox(height: size.height * 0.05),
+                        OtherFunctionalities(
+                          width: size.width * 0.87,
+                          height: size.height * 0.25,
+                        ),
+                        SizedBox(height: size.height * 0.15),
+                      ],
+                    )),
+
+                //_SingleScrollView(size: size, pageController: _pageController),
                 _AppBarHomePage(height, size, account),
-                Positioned(right: 20, bottom: 20, child: FAB(
-                  label: 'Pagar QR',
-                  image: qrCode,
-                  height: size.height * 0.08,
-                  width: size.width * 0.4,
-                  onTap: () {},
-                ),),
+                Positioned(
+                  right: 20,
+                  bottom: 20,
+                  child: FAB(
+                    label: 'Pagar QR',
+                    image: qrCode,
+                    height: size.height * 0.08,
+                    width: size.width * 0.4,
+                    onTap: () {},
+                  ),
+                ),
 
                 Visibility(
                   visible: isDrawerOn,
                   child: _Drawer(),
                 ),
               ],
+            )));
+  }
+
+  Material _LastMoves(Size size) {
+    return Material(
+        borderRadius: BorderRadius.circular(radiusRoundedBtn),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: InkWell(
+            borderRadius: BorderRadius.circular(radiusRoundedBtn),
+            highlightColor: Colors.red.withOpacity(0.5),
+            splashColor: Colors.red.withOpacity(0.5),
+            onTap: () {
+              setState(() {
+                if (!isLastMoves) {
+                  _controller.forward();
+                  isLastMoves = true;
+                } else {
+                  _controller.reverse();
+                  isLastMoves = false;
+                }
+              });
+            },
+            child: Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 28),
+              width: size.width * 0.87,
+              height: size.height * 0.1 + _animation.value,
+              decoration: BoxDecoration(
+                boxShadow: [kBoxShadow],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(radiusRoundedBtn),
+              ),
+              child: Column(children: [
+                Row(
+                  children: [
+                    FaIcon(!isLastMoves
+                        ? FontAwesomeIcons.chevronDown
+                        : FontAwesomeIcons.chevronUp),
+                    SizedBox(width: size.width * 0.05),
+                    Text(
+                      'Últimos movimientos',
+                      style: TextStyle(fontSize: size.height * 0.025),
+                    ),
+                  ],
+                ),
+                Visibility(
+                    visible: isLastMoves,
+                    child: Expanded(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: size.height * 0.01),
+                        Divider(
+                          thickness: 2,
+                        ),
+                        SizedBox(height: size.height * 0.01),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '23/11',
+                                  style: TextStyle(fontSize: 15)
+                                ),
+                                Text(
+                                  'Compra pei cdni',
+                                  style: TextStyle(fontSize: 20)
+                                ),
+                              ],
+                            ),
+                            Text('-3.555,05', style: TextStyle(fontSize: 20),),
+                          ],
+                        )
+                      ],
+                    ))),
+              ]),
             )));
   }
 
@@ -144,43 +268,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class _SingleScrollView extends StatelessWidget {
-  const _SingleScrollView({
-    Key? key,
-    required this.size,
-    required this.pageController,
-  }) : super(key: key);
-
-  final PageController pageController;
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _SendRecieveBtn(size: size),
-        _BtnTable(),
-        _VendingBanner(size: size, pageController: pageController),
-        SizedBox(height: size.height * 0.05),
-        BtnRounded(
-          width: size.width * 0.87,
-          height: size.height * 0.1,
-          onTap: () {},
-        ),
-        SizedBox(height: size.height * 0.05),
-        OtherFunctionalities(
-          width: size.width * 0.87,
-          height: size.height * 0.25,
-        ),
-        SizedBox(height: size.height * 0.15),
-      ],
-    ));
-  }
-}
-
 class _VendingBanner extends StatelessWidget {
   const _VendingBanner({
     Key? key,
@@ -194,14 +281,14 @@ class _VendingBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.only(bottom: size.height * 0.015),
       alignment: Alignment.center,
       width: size.width * 0.87,
       height: size.height * 0.24,
       decoration: BoxDecoration(
         boxShadow: [kBoxShadow],
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(radiusRoundedBtn),
       ),
       child: Stack(
         alignment: Alignment.bottomCenter,
