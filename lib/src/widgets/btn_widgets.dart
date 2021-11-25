@@ -187,7 +187,7 @@ class FAB extends StatelessWidget {
           bottomRight: Radius.circular(radiusContainerLogin / 6),
           topRight: Radius.circular(radiusContainerLogin / 2),
           bottomLeft: Radius.circular(radiusContainerLogin / 2)),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      //clipBehavior: Clip.antiAliasWithSaveLayer,
       child: InkWell(
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(radiusContainerLogin / 6),

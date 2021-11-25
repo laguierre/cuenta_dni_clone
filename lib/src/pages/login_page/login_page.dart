@@ -141,6 +141,7 @@ class _AppBar extends StatelessWidget {
               child: Opacity(
                 opacity: (1 - 3.5 * position) < 0 ? 0.0 : 1 - 3.5 * position,
                 child: CircleAvatar(
+                  backgroundColor: Colors.transparent,
                   backgroundImage: AssetImage(avatarCuentaDNI),
                   radius: radiusAvatar * (1 - position),
                 ),

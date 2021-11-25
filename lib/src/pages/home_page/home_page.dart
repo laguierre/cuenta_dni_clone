@@ -1,3 +1,4 @@
+import 'package:cuenta_dni_clone/src/pages/home_page/custom_drawer.dart';
 import 'package:cuenta_dni_clone/src/pages/home_page/other_fuctionalities_widget.dart';
 import 'package:cuenta_dni_clone/src/utils/constants.dart';
 import 'package:cuenta_dni_clone/src/utils/gradients.dart';
@@ -9,6 +10,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 bool isDrawerOn = false;
 bool isLastMoves = false;
+bool isShowMoney = true;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -66,14 +68,11 @@ class _HomePageState extends State<HomePage>
                         _LastMoves(size),
                         SizedBox(height: size.height * 0.05),
                         OtherFunctionalities(
-                          width: size.width * 0.87,
-                          height: size.height * 0.25,
-                        ),
+                            width: size.width * 0.87,
+                            height: size.height * 0.25),
                         SizedBox(height: size.height * 0.15),
                       ],
                     )),
-
-                //_SingleScrollView(size: size, pageController: _pageController),
                 _AppBarHomePage(height, size, account),
                 Positioned(
                   right: 20,
@@ -86,19 +85,19 @@ class _HomePageState extends State<HomePage>
                     onTap: () {},
                   ),
                 ),
-
                 Visibility(
                   visible: isDrawerOn,
-                  child: _Drawer(),
+                  child: CustomDrawer(),
                 ),
               ],
             )));
   }
 
   Material _LastMoves(Size size) {
+    double space = size.height * 0.015;
     return Material(
         borderRadius: BorderRadius.circular(radiusRoundedBtn),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        //clipBehavior: Clip.antiAliasWithSaveLayer,
         child: InkWell(
             borderRadius: BorderRadius.circular(radiusRoundedBtn),
             highlightColor: Colors.red.withOpacity(0.5),
@@ -120,8 +119,8 @@ class _HomePageState extends State<HomePage>
               width: size.width * 0.87,
               height: size.height * 0.1 + _animation.value,
               decoration: BoxDecoration(
-                boxShadow: [kBoxShadow],
                 color: Colors.white,
+                boxShadow: [kBoxShadow],
                 borderRadius: BorderRadius.circular(radiusRoundedBtn),
               ),
               child: Column(children: [
@@ -140,25 +139,39 @@ class _HomePageState extends State<HomePage>
                 Visibility(
                     visible: isLastMoves,
                     child: Expanded(
-                        child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(height: size.height * 0.01),
-                        Divider(
-                          thickness: 2,
-                        ),
-                        SizedBox(height: size.height * 0.01),
-                        _LastDetailsMoves(date: '23/11', cost: '\$ -3.555,05', details: 'Compra pei cdni',),
-                        SizedBox(height: size.height * 0.01),
-                        _LastDetailsMoves(date: '22/11', cost: '\$ -903,25', details: 'Compra pei cdni',),
-                        SizedBox(height: size.height * 0.01),
-                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.215,45', details: 'Compra pei cdni',),
-                        SizedBox(height: size.height * 0.01),
-                        _LastDetailsMoves(date: '22/11', cost: '\$ -47,03', details: 'Compra pei cdni',),
-                        SizedBox(height: size.height * 0.01),
-                        _LastDetailsMoves(date: '22/11', cost: '\$ -1.018,52', details: 'Compra pei cdni',),
-
-                      ],
+                        child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                          //mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(height: size.height * 0.01),
+                            const Divider(thickness: 2),
+                            SizedBox(height: space),
+                            _LastDetailsMoves(
+                                date: '23/11',
+                                cost: '\$ -3.555,05',
+                                details: 'Compra pei cdni'),
+                            SizedBox(height: space),
+                            _LastDetailsMoves(
+                                date: '22/11',
+                                cost: '\$ -903,25',
+                                details: 'Compra pei cdni'),
+                            SizedBox(height: space),
+                            _LastDetailsMoves(
+                                date: '22/11',
+                                cost: '\$ -1.215,45',
+                                details: 'Compra pei cdni'),
+                            SizedBox(height: space),
+                            _LastDetailsMoves(
+                                date: '22/11',
+                                cost: '\$ -47,03',
+                                details: 'Compra pei cdni'),
+                            SizedBox(height: space),
+                            _LastDetailsMoves(
+                                date: '22/11',
+                                cost: '\$ -1.018,52',
+                                details: 'Compra pei cdni'),
+                          ]),
                     ))),
               ]),
             )));
@@ -199,7 +212,6 @@ class _HomePageState extends State<HomePage>
                               setState(() {
                                 isDrawerOn = true;
                               });
-
                             }),
                       ],
                     ),
@@ -217,18 +229,28 @@ class _HomePageState extends State<HomePage>
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(account,
-                              style:
-                                  TextStyle(fontSize: 40, color: Colors.white)),
+                          isShowMoney
+                              ? Text(account,
+                                  style: TextStyle(
+                                      fontSize: size.width * 0.1,
+                                      color: Colors.white))
+                              : Text('Saldo Oculto',
+                                  style: TextStyle(
+                                      fontSize: size.width * 0.085,
+                                      color: Colors.white)),
                           IconButton(
                               splashColor: Colors.grey,
                               splashRadius: 30,
-                              icon: Image.asset(
-                                'lib/assets/images/view.png',
-                                color: Colors.white,
-                                height: 28,
-                              ),
-                              onPressed: () {}),
+                              icon: isShowMoney
+                                  ? Image.asset('lib/assets/images/view.png',
+                                      color: Colors.white, height: 28)
+                                  : Image.asset('lib/assets/images/hide.png',
+                                      color: Colors.white, height: 28),
+                              onPressed: () {
+                                setState(() {
+                                  isShowMoney = !isShowMoney;
+                                });
+                              }),
                         ],
                       )
                     ],
@@ -261,14 +283,17 @@ class _HomePageState extends State<HomePage>
 
 class _LastDetailsMoves extends StatelessWidget {
   const _LastDetailsMoves({
-    Key? key, required this.date, required this.details, required this.cost,
+    Key? key,
+    required this.date,
+    required this.details,
+    required this.cost,
   }) : super(key: key);
 
   final String date, details, cost;
 
   @override
   Widget build(BuildContext context) {
-    var size= MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -277,19 +302,13 @@ class _LastDetailsMoves extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              date,
-              style: TextStyle(fontSize: 15),
-            ),
-            Text(
-              details,
-              style: TextStyle(fontSize: 20)
-            ),
+            Text(date,
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+            Text(details, style: TextStyle(fontSize: 20)),
           ],
         ),
         Spacer(),
         Text(cost, style: TextStyle(fontSize: 20)),
-
       ],
     );
   }
@@ -460,7 +479,7 @@ class _BtnTable extends StatelessWidget {
                 text: 'Extraer sin\ntarjeta',
                 onTap: () {}),
           ]),
-          TableRow(children: [
+          const TableRow(children: [
             SizedBox(height: 30),
             SizedBox(height: 30),
             SizedBox(height: 30),
@@ -532,180 +551,6 @@ class _Page extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: size.height * 0.022),
           )
-        ],
-      ),
-    );
-  }
-}
-
-class _Drawer extends StatefulWidget {
-  const _Drawer({Key? key}) : super(key: key);
-
-  @override
-  _DrawerState createState() => _DrawerState();
-}
-class _DrawerState extends State<_Drawer> {
-  @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
-    double sizeContainerWhite = size.height * 0.18;
-    double sizeAvatarDrawer = size.height * 0.050;
-    double sizeWidthDrawer = isDrawerOn ? size.width * 0.92 : 0;
-    double height = 65;
-    return Container(
-      alignment: Alignment.centerLeft,
-      decoration: BoxDecoration(color: kBackgroundColor),
-      height: size.height,
-      width: sizeWidthDrawer,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Row(
-            children: [
-              Container(
-                height: sizeContainerWhite,
-                width: sizeWidthDrawer,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(radiusContainerLogin),
-                        bottomLeft: Radius.circular(radiusContainerLogin))),
-                child: Stack(
-                  children: [
-                    Positioned(
-                        left: size.width * 0.03,
-                        top: sizeContainerWhite / 2 - sizeAvatarDrawer,
-                        child: CircleAvatar(
-                            backgroundImage: AssetImage(avatarCuentaDNI),
-                            radius: sizeAvatarDrawer)),
-                    Positioned(
-                        left: size.width * 0.05 + 35,
-                        top: sizeContainerWhite / 2 - sizeAvatarDrawer + 55,
-                        child: Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.white, width: 1.5),
-                              shape: BoxShape.circle,
-                              color: Colors.white),
-                          child: Image.asset(
-                            'lib/assets/images/pencil.png',
-                            color: kPrimaryColor,
-                            height: size.height * 0.04,
-                          ),
-                        )),
-                    Positioned(
-                        top: 20,
-                        right: size.width * 0.008,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(userName,
-                                    style: TextStyle(
-                                        fontSize: size.height * 0.023)),
-                                SizedBox(width: size.width * 0.025),
-                                IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isDrawerOn = false;
-                                      });
-                                    },
-                                    icon: Image.asset(
-                                      'lib/assets/images/close.png',
-                                      height: size.height * 0.03,
-                                      color: kPrimaryColor,
-                                    ))
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            Text(
-                              'Último Ingreso',
-                              style: TextStyle(
-                                  fontSize: size.height * 0.02,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            Text(
-                              '01/01/2022',
-                              style: TextStyle(
-                                  fontSize: size.height * 0.021,
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        )),
-                  ],
-                ),
-              )
-            ],
-          ),
-          Expanded(
-              child: SingleChildScrollView(
-            child: Column(
-              children: [
-                BtnRectangleImage(
-                  width: sizeWidthDrawer,
-                  height: height,
-                  label: 'Cambiar contraseña',
-                  image: 'lib/assets/images/refresh.png',
-                  onTap: () {},
-                ),
-                Divider(thickness: 1),
-                BtnRectangleImage(
-                  width: sizeWidthDrawer,
-                  height: height,
-                  label: 'Contacto',
-                  image: 'lib/assets/images/contact.png',
-                  onTap: () {},
-                ),
-                Divider(thickness: 1),
-                BtnRectangleImage(
-                  width: sizeWidthDrawer,
-                  height: height,
-                  label: 'Validar Telefono',
-                  image: 'lib/assets/images/mobile2.png',
-                  onTap: () {},
-                ),
-                Divider(thickness: 1),
-                BtnRectangleImage(
-                  width: sizeWidthDrawer,
-                  height: height,
-                  label: 'Validar correo electrónico',
-                  image: 'lib/assets/images/mail.png',
-                  onTap: () {},
-                ),
-                Divider(thickness: 1),
-                BtnRectangleImage(
-                  width: sizeWidthDrawer,
-                  height: height,
-                  label: 'Alta usuario BIP',
-                  image: 'lib/assets/images/user.png',
-                  onTap: () {},
-                ),
-                Divider(thickness: 1),
-                BtnRectangleImage(
-                  width: sizeWidthDrawer,
-                  height: height,
-                  label: 'Legales',
-                  image: 'lib/assets/images/agreement.png',
-                  onTap: () {},
-                ),
-                Divider(thickness: 1),
-              ],
-            ),
-          )),
-          Divider(thickness: 1),
-          BtnRectangleImage(
-            width: sizeWidthDrawer,
-            height: 80,
-            label: 'Cerrar sesión',
-            image: 'lib/assets/images/logout.png',
-            onTap: () {},
-          ),
         ],
       ),
     );
