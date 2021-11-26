@@ -1,5 +1,6 @@
 import 'package:cuenta_dni_clone/src/pages/home_page/custom_drawer.dart';
 import 'package:cuenta_dni_clone/src/pages/home_page/other_fuctionalities_widget.dart';
+import 'package:cuenta_dni_clone/src/pages/myaccount/myaccount.dart';
 import 'package:cuenta_dni_clone/src/utils/constants.dart';
 import 'package:cuenta_dni_clone/src/utils/gradients.dart';
 import 'package:cuenta_dni_clone/src/widgets/btn_widgets.dart';
@@ -269,8 +270,15 @@ class _HomePageState extends State<HomePage>
                             height: 50,
                           ),
                           onPressed: () {}),
-                      FaIcon(FontAwesomeIcons.chevronRight,
-                          size: 30, color: Colors.white),
+                      IconButton(
+
+                        icon: const FaIcon(FontAwesomeIcons.chevronRight,
+                            size: 30, color: Colors.white),
+                        onPressed: () { Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyAccountPage()),
+                        );},
+                      ),
                     ],
                   ))
             ],
