@@ -182,16 +182,7 @@ class _PasswordLogIn extends StatelessWidget {
           height: size.height * 0.05,
           width: widthColumn,
           onTap: () {
-            Future.delayed(
-                const Duration(milliseconds: delaySplash),
-                () => Navigator.of(context).pushReplacement(PageRouteBuilder(
-                    transitionDuration: const Duration(milliseconds: 100),
-                    pageBuilder: (context, animation, _) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: const HomePage(),
-                      );
-                    })));
+            _toHomePage(context);
           }),
       SizedBox(height: size.height * 0.03),
       BtnImage(
@@ -201,10 +192,21 @@ class _PasswordLogIn extends StatelessWidget {
         colorImage: kPrimaryColor,
         border: size.height * 0.015,
         onTap: () {
-          print('Hola 2');
+          _toHomePage(context);
         },
       ),
     ]);
+  }
+
+  void _toHomePage(BuildContext context) {
+    Navigator.of(context).pushReplacement(PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 500),
+        pageBuilder: (context, animation, _) {
+          return FadeTransition(
+            opacity: animation,
+            child: const HomePage(),
+          );
+        }));
   }
 }
 

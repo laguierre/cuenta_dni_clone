@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     _controller.stop();
     _animation = Tween<double>(begin: 0, end: 280).animate(_controller)
       ..addListener(() {
@@ -259,9 +259,11 @@ class _HomePageState extends State<HomePage>
               Flexible(
                   flex: 1,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-
+                    mainAxisAlignment: MainAxisAlignment.start,
+crossAxisAlignment: CrossAxisAlignment.start,
+mainAxisSize: MainAxisSize.min,
                     children: [
+SizedBox(height: 12,),
                       IconButton(
                           splashColor: Colors.grey,
                           splashRadius: 30,
@@ -271,6 +273,7 @@ class _HomePageState extends State<HomePage>
                             height: 50,
                           ),
                           onPressed: () {}),
+                      SizedBox(height: size.height * 0.055,),
                       IconButton(
                         icon: const FaIcon(FontAwesomeIcons.chevronRight,
                             size: 30, color: Colors.white),

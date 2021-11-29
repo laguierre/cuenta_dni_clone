@@ -22,28 +22,29 @@ class BtnGrey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(border),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(border),
-          child: Container(
-              alignment: Alignment.center,
-              width: width,
-              height: height,
-              decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(border/2),
-                      bottomRight: Radius.circular(border/2),
-                      bottomLeft: Radius.circular(border),
-                      topRight: Radius.circular(border))),
-              child: Text(label,
-                  style: TextStyle(color: Colors.white, fontSize: 22))),
-          onTap: onTap,
-        ));
+    return InkWell(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(border/4),
+          bottomRight: Radius.circular(border/4),
+          bottomLeft: Radius.circular(border),
+          topRight: Radius.circular(border)),
+      child: Container(
+          alignment: Alignment.center,
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(border/4),
+                  bottomRight: Radius.circular(border/4),
+                  bottomLeft: Radius.circular(border),
+                  topRight: Radius.circular(border))),
+          child: Text(label,
+              style: TextStyle(color: Colors.white, fontSize: 22))),
+      onTap: onTap,
+    );
   }
+
 }
 
 class BtnImage extends StatelessWidget {
@@ -257,6 +258,32 @@ class BtnRectangleImage extends StatelessWidget {
             label,
             style: TextStyle(fontSize: size.height * 0.025),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class BtnSquareImageAndText extends StatelessWidget {
+  const BtnSquareImageAndText({Key? key, this.height = 100, this.width = 100, required this.label, required this.image}) : super(key: key);
+
+  final double height,width;
+  final String label, image;
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Container(
+      alignment: Alignment.center,
+      height: height,
+      width: width,
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [kBoxShadow]),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(image, height: size.height * 0.05, color: kPrimaryColor),
+          Text(label, textAlign: TextAlign.center, style: TextStyle(fontSize: size.height * 0.018)),
         ],
       ),
     );
