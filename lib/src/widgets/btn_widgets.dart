@@ -277,13 +277,13 @@ class BtnSquareImageAndText extends StatelessWidget {
       alignment: Alignment.center,
       height: height,
       width: width,
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [kBoxShadow]),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(size.height * 0.015), boxShadow: [kBoxShadow]),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(image, height: size.height * 0.05, color: kPrimaryColor),
-          Text(label, textAlign: TextAlign.center, style: TextStyle(fontSize: size.height * 0.018)),
+          Text(label, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: TextStyle(fontSize: size.height * 0.016)),
         ],
       ),
     );

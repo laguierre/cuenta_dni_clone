@@ -75,7 +75,7 @@ class _MyAccountPageState extends State<MyAccountPage>
                         )),
                     child: Stack(children: [
                       Padding(
-                        padding: const EdgeInsets.all(17),
+                        padding: EdgeInsets.all(size.height * 0.015),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -171,7 +171,7 @@ class _MyAccountPageState extends State<MyAccountPage>
 
                   ///Data Card///
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.035),
                       child: Opacity(
                         opacity: _animationOpacity.value,
                         child: Stack(
@@ -191,7 +191,7 @@ class _MyAccountPageState extends State<MyAccountPage>
                                     0.15 *
                                     _animationOpacity.value),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderRadius: BorderRadius.circular(20),
                                     color: Colors.white,
                                     boxShadow: [kBoxShadow]),
                                 child: Container(
@@ -232,12 +232,12 @@ class _MyAccountPageState extends State<MyAccountPage>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const Padding(
+                                      Padding(
                                         padding:
-                                            EdgeInsets.only(top: 18, left: 19),
+                                            EdgeInsets.only(top: size.height * 0.016, left: size.width*0.035),
                                         child: Text(accountCA,
                                             style: TextStyle(
-                                                fontSize: 20,
+                                                fontSize: size.height * 0.027,
                                                 color: Colors.white)),
                                       ),
                                       SizedBox(height: size.height * 0.09),
@@ -262,24 +262,10 @@ class _MyAccountPageState extends State<MyAccountPage>
                         ),
                       )),
                   _TextTranslate(size, height),
-
-                  ///Text Money Account///
-                  /*Positioned(
-                    bottom: 20,
-                    child: Slider(
-                      value: _value,
-                      //label: _value.round().toString(),
-                      onChanged: (double value) {
-                        setState(() {
-                          _value = value;
-                        });
-                      },
-                    ),
-                  )*/
                 ]),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 19, vertical: 25),
+                      EdgeInsets.symmetric(horizontal: size.width * 0.035, vertical: size.height * 0.035),
                   child: Opacity(
                     opacity: _animationOpacity.value,
                     child: SingleChildScrollView(
@@ -288,7 +274,7 @@ class _MyAccountPageState extends State<MyAccountPage>
                         children: [
                           InkWell(
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              padding: EdgeInsets.symmetric(horizontal: size.width * 0.035),
                               height: size.height * 0.1,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
@@ -305,7 +291,7 @@ class _MyAccountPageState extends State<MyAccountPage>
                                     height: size.height * 0.05,
                                   ),
                                   Text('Cambiar cuenta principal',
-                                      style: TextStyle(fontSize: 20)),
+                                      style: TextStyle(fontSize: size.height * 0.025)),
                                 ],
                               ),
                             ),
@@ -319,13 +305,13 @@ class _MyAccountPageState extends State<MyAccountPage>
                             children: [
                               BtnSquareImageAndText(
                                   image: 'lib/assets/images/sharing.png',
-                                  label: 'Solicitar a\notro usuario'),
+                                  label: 'Solicitar a\notro usuario', height: size.height* 0.12, width: size.width * 0.22),
                               BtnSquareImageAndText(
                                   image: 'lib/assets/images/bank.png',
-                                  label: 'Sucursal\nBanco'),
+                                  label: 'Sucursal\nBanco', height: size.height* 0.12, width: size.width * 0.22),
                               BtnSquareImageAndText(
                                   image: 'lib/assets/images/transfer.png',
-                                  label: 'Transferencia'),
+                                  label: 'Transferencia', height: size.height* 0.12, width: size.width * 0.22),
                             ],
                           )
                         ],
@@ -392,7 +378,7 @@ class _label extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     double sizeFont = size.height * 0.023;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
+      padding: EdgeInsets.symmetric(horizontal: size.width * 0.025, vertical: size.height * 0.003),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.min,
