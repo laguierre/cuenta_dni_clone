@@ -13,6 +13,8 @@ const String qrCode = 'lib/assets/images/qr-code.png';
 
 ///Strings///
 const String userName = '¡Hola Juan Carlos Perez!';
+const String account = '\$ 1000,00';
+const String accountCA = 'CA \$ 123456789';
 
 ///Constants
 const double radiusContainerLogin = 30.0;

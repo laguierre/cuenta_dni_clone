@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage>
     var size = MediaQuery.of(context).size;
     final PageController _pageController = PageController(initialPage: 0);
     double height = MediaQuery.of(context).size.height * appBarGreenPercent;
-    String account = '\$ 1000,00';
+
 
     return SafeArea(
         child: Scaffold(
@@ -185,7 +185,7 @@ class _HomePageState extends State<HomePage>
       decoration: BoxDecoration(
           boxShadow: [kBoxShadow],
           gradient: LinearGradient(colors: gradientCuentaDNI),
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(radiusContainerLogin),
             bottomRight: Radius.circular(radiusContainerLogin),
           )),
@@ -260,6 +260,7 @@ class _HomePageState extends State<HomePage>
                   flex: 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+
                     children: [
                       IconButton(
                           splashColor: Colors.grey,
@@ -271,13 +272,18 @@ class _HomePageState extends State<HomePage>
                           ),
                           onPressed: () {}),
                       IconButton(
-
                         icon: const FaIcon(FontAwesomeIcons.chevronRight,
                             size: 30, color: Colors.white),
-                        onPressed: () { Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyAccountPage()),
-                        );},
+                        onPressed: () {
+                          /*Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyAccountPage()));*/
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(pageBuilder: (_, __, ___) => MyAccountPage()));
+
+                        },
                       ),
                     ],
                   ))
@@ -418,7 +424,7 @@ class _SendRecieveBtn extends StatelessWidget {
               left: 10,
               bottom: 18,
               child: Container(
-                padding: EdgeInsets.only(right: 15),
+                padding: const EdgeInsets.only(right: 15),
                 width: size.width / 2,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

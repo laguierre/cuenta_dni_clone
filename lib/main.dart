@@ -1,4 +1,5 @@
 import 'package:cuenta_dni_clone/src/pages/login_page/login_page.dart';
+import 'package:cuenta_dni_clone/src/pages/myaccount/myaccount.dart';
 import 'package:cuenta_dni_clone/src/pages/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,4 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
