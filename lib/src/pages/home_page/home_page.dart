@@ -1,3 +1,4 @@
+import 'package:cuenta_dni_clone/src/data/data.dart';
 import 'package:cuenta_dni_clone/src/pages/home_page/custom_drawer.dart';
 import 'package:cuenta_dni_clone/src/pages/home_page/other_fuctionalities_widget.dart';
 import 'package:cuenta_dni_clone/src/pages/myaccount/myaccount.dart';
@@ -27,8 +28,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
     _controller.stop();
     _animation = Tween<double>(begin: 0, end: 280).animate(_controller)
       ..addListener(() {
@@ -49,12 +50,11 @@ class _HomePageState extends State<HomePage>
     final PageController _pageController = PageController(initialPage: 0);
     double height = MediaQuery.of(context).size.height * appBarGreenPercent;
 
-
     return SafeArea(
         child: Scaffold(
             backgroundColor: kBackgroundColor,
             body: Stack(
-              //alignment: Alignment.topCenter,
+              alignment: Alignment.topCenter,
               children: [
                 SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _SendRecieveBtn(size: size),
-                        _BtnTable(),
+                        const _BtnTable(),
                         _VendingBanner(
                             size: size, pageController: _pageController),
                         SizedBox(height: size.height * 0.05),
@@ -147,37 +147,12 @@ class _HomePageState extends State<HomePage>
                           children: [
                             SizedBox(height: size.height * 0.01),
                             const Divider(thickness: 2),
-                            SizedBox(height: space),
-                            _LastDetailsMoves(
-                                date: '23/11',
-                                cost: '\$ -3.555,05',
-                                details: 'Compra pei cdni'),
-                            SizedBox(height: space),
-                            _LastDetailsMoves(
-                                date: '22/11',
-                                cost: '\$ -903,25',
-                                details: 'Compra pei cdni'),
-                            SizedBox(height: space),
-                            _LastDetailsMoves(
-                                date: '22/11',
-                                cost: '\$ -1.215,45',
-                                details: 'Compra pei cdni'),
-                            SizedBox(height: space),
-                            _LastDetailsMoves(
-                                date: '22/11',
-                                cost: '\$ -47,03',
-                                details: 'Compra pei cdni'),
-                            SizedBox(height: space),
-                            _LastDetailsMoves(
-                                date: '22/11',
-                                cost: '\$ -1.018,52',
-                                details: 'Compra pei cdni'),
+                            _getLastMoves(space)
                           ]),
                     ))),
               ]),
             )));
   }
-
   Container _AppBarHomePage(double height, Size size, String account) {
     return Container(
       width: double.infinity,
@@ -260,10 +235,10 @@ class _HomePageState extends State<HomePage>
                   flex: 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-crossAxisAlignment: CrossAxisAlignment.start,
-mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-SizedBox(height: 12,),
+                      const SizedBox(height: 12),
                       IconButton(
                           splashColor: Colors.grey,
                           splashRadius: 30,
@@ -273,19 +248,18 @@ SizedBox(height: 12,),
                             height: 50,
                           ),
                           onPressed: () {}),
-                      SizedBox(height: size.height * 0.055,),
+                      SizedBox(
+                        height: size.height * 0.055,
+                      ),
                       IconButton(
                         icon: const FaIcon(FontAwesomeIcons.chevronRight,
                             size: 30, color: Colors.white),
                         onPressed: () {
-                          /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MyAccountPage()));*/
                           Navigator.push(
                               context,
-                              PageRouteBuilder(pageBuilder: (_, __, ___) => MyAccountPage()));
-
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const MyAccountPage()));
                         },
                       ),
                     ],
@@ -311,7 +285,6 @@ class _LastDetailsMoves extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -320,17 +293,16 @@ class _LastDetailsMoves extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(date,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-            Text(details, style: TextStyle(fontSize: 20)),
+                style: TextStyle(fontSize: size.height*0.0165, fontWeight: FontWeight.w400)),
+            Text(details, style: TextStyle(fontSize: size.height * 0.024)),
           ],
         ),
-        Spacer(),
-        Text(cost, style: TextStyle(fontSize: 20)),
+        const Spacer(),
+        Text(cost, style: TextStyle(fontSize: size.height * 0.025, fontWeight: FontWeight.w600)),
       ],
     );
   }
 }
-
 class _VendingBanner extends StatelessWidget {
   const _VendingBanner({
     Key? key,
@@ -357,28 +329,19 @@ class _VendingBanner extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           PageView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             controller: pageController,
             children: [
-              _Page(
-                image: imagePage1,
-                size: size,
-                text: '10% Descuento\nen restaurant',
-              ),
-              _Page(
-                image: imagePage2,
-                size: size,
-                text: '15% Descuento\nen indumentaria',
-              ),
-              _Page(
-                image: imagePage3,
-                size: size,
-                text: '5% Descuento\nen transporte',
-              ),
+              for (int i = 0; i < BannerPage.listBannerPage.length; i++)
+                _Page(
+                  image: BannerPage.listBannerPage[i].image,
+                  size: size,
+                  text: BannerPage.listBannerPage[i].text,
+                ),
             ],
           ),
           SmoothPageIndicator(
-            effect: ScrollingDotsEffect(
+            effect: const ScrollingDotsEffect(
               spacing: 10,
               fixedCenter: true,
               dotWidth: 11,
@@ -410,7 +373,7 @@ class _SendRecieveBtn extends StatelessWidget {
       decoration: BoxDecoration(
           boxShadow: [kBoxShadow],
           color: Colors.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               bottomRight: Radius.circular(radiusContainerLogin),
               bottomLeft: Radius.circular(radiusContainerLogin))),
       width: double.infinity,
@@ -479,42 +442,26 @@ class _BtnTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.symmetric(vertical: 30),
       child: Table(
         children: [
           TableRow(children: [
-            BtnSquareImage(
-                image: 'lib/assets/images/barcode.png',
-                text: 'Pagar con \nClave DNI',
-                onTap: () {}),
-            BtnSquareImage(
-                image: 'lib/assets/images/currency-exchange.png',
-                text: 'Transferir\n',
-                onTap: () {}),
-            BtnSquareImage(
-                image: 'lib/assets/images/withdraw-money.png',
-                text: 'Extraer sin\ntarjeta',
-                onTap: () {}),
+            for (int i = 0; i < 3; i++)
+              BtnSquareImage(
+                  image: SquareImageBtn.listSquareImageBtn[i].image,
+                  text: SquareImageBtn.listSquareImageBtn[i].text,
+                  onTap: () {}),
           ]),
-          const TableRow(children: [
-            SizedBox(height: 30),
-            SizedBox(height: 30),
-            SizedBox(height: 30),
+          TableRow(children: [
+            for (int i = 0; i < 3; ++i) const SizedBox(height: 30),
           ]),
           TableRow(
             children: [
-              BtnSquareImage(
-                  image: 'lib/assets/images/bill.png',
-                  text: 'Pagar\nservicios',
-                  onTap: () {}),
-              BtnSquareImage(
-                  image: 'lib/assets/images/mobile.png',
-                  text: 'Recargar\ncelular',
-                  onTap: () {}),
-              BtnSquareImage(
-                  image: 'lib/assets/images/bus.png',
-                  text: 'Recargar\ntransporte',
-                  onTap: () {}),
+              for (int i = 3; i < 6; i++)
+                BtnSquareImage(
+                    image: SquareImageBtn.listSquareImageBtn[i].image,
+                    text: SquareImageBtn.listSquareImageBtn[i].text,
+                    onTap: () {}),
             ],
           )
         ],
@@ -572,4 +519,20 @@ class _Page extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _getLastMoves(double space) {
+  List<Widget> getLastMovesList = [];
+  for (int i = 0; i < LastDetailsMoves.listLastDetailsMoves.length; i++) {
+    getLastMovesList.add(SizedBox(height: space));
+    getLastMovesList.add(
+      _LastDetailsMoves(
+        details: LastDetailsMoves.listLastDetailsMoves[i].details,
+        cost: LastDetailsMoves.listLastDetailsMoves[i].cost,
+        date: LastDetailsMoves.listLastDetailsMoves[i].date,
+      ),
+    );
+    getLastMovesList.add(SizedBox(height: space));
+  }
+  return Wrap(spacing: space,children: getLastMovesList);
 }

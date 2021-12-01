@@ -51,7 +51,6 @@ class _LogInPageState extends State<LogInPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     double heightContainer = size.height * 0.35;
-    double heightAvatar = heightContainer - radiusAvatar;
     double widthColumn = size.width * 0.8;
     double kBorderRadius = size.height * 0.015;
     setState(() {
@@ -142,7 +141,7 @@ class _AppBar extends StatelessWidget {
                 opacity: (1 - 3.5 * position) < 0 ? 0.0 : 1 - 3.5 * position,
                 child: CircleAvatar(
                   backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage(avatarCuentaDNI),
+                  backgroundImage: const AssetImage(avatarCuentaDNI),
                   radius: radiusAvatar * (1 - position),
                 ),
               ))
@@ -177,6 +176,7 @@ class _PasswordLogIn extends StatelessWidget {
       ),
       SizedBox(height: size.height * 0.025),
       BtnGrey(
+        color: kPrimaryColor,
           label: 'Ingresar',
           border: kBorderRadius,
           height: size.height * 0.05,
@@ -221,6 +221,7 @@ class _Inputs extends StatelessWidget {
       obscureText: true,
       decoration: InputDecoration(
         counterText: 'Sin contraseña. Presionar un botón',
+        counterStyle: TextStyle(fontSize: size.height * 0.018),
         hintText: 'Contraseña',
         contentPadding: EdgeInsets.only(
             left: size.width * 0.1,

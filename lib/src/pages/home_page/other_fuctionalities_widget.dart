@@ -1,3 +1,4 @@
+import 'package:cuenta_dni_clone/src/data/data.dart';
 import 'package:cuenta_dni_clone/src/utils/constants.dart';
 import 'package:cuenta_dni_clone/src/widgets/btn_widgets.dart';
 import 'package:flutter/material.dart';
@@ -46,37 +47,31 @@ class _ScrollBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: size.width * 0.055),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.055),
         scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
         child: Row(
           children: [
-            SizedBox(width: size.width * 0.05),
-            BtnSquareImage(
-              image: 'lib/assets/images/afip.png',
-              text: 'Pagos\nAFIP',
-              onTap: () {},
-            ),
-            SizedBox(width: size.width * 0.1),
-            BtnSquareImage(
-              image: 'lib/assets/images/credit-cards.png',
-              text: 'Otras\ncargas',
-              onTap: () {},
-            ),
-            SizedBox(width: size.width * 0.1),
-            BtnSquareImage(
-              image: 'lib/assets/images/shop.png',
-              text: 'Extraer en\ncomercios',
-              onTap: () {},
-            ),
-            SizedBox(width: size.width * 0.1),
-            BtnSquareImage(
-              image: 'lib/assets/images/information.png',
-              text: 'Pagos\nAFIP',
-              onTap: () {},
-            ),
-            SizedBox(width: size.width * 0.055),
+            SizedBox(width: size.width * 0.025),
+            _getBanner(size),
           ],
         ));
   }
+}
+
+Widget _getBanner(Size size) {
+  List<Widget> getBannerList = [];
+  for (int i = 6; i < SquareImageBtn.listSquareImageBtn.length; i++) {
+    getBannerList.add(
+      BtnSquareImage(
+        image: SquareImageBtn.listSquareImageBtn[i].image,
+        text: SquareImageBtn.listSquareImageBtn[i].text,
+        onTap: () {},
+      ),
+    );
+    getBannerList.add(SizedBox(width: size.width * 0.1));
+  }
+  return Wrap(children: getBannerList);
 }
