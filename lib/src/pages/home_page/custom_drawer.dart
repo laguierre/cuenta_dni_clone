@@ -1,6 +1,8 @@
 import 'package:cuenta_dni_clone/src/utils/constants.dart';
 import 'package:cuenta_dni_clone/src/widgets/btn_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:cuenta_dni_clone/src/data/data.dart';
+
 
 import 'home_page.dart';
 
@@ -22,10 +24,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
     double height = 65;
     return Container(
       alignment: Alignment.centerLeft,
+      margin: EdgeInsets.only(left: 0),
       decoration: BoxDecoration(color: kBackgroundColor),
       height: size.height,
       width: sizeWidthDrawer,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Row(
@@ -116,55 +120,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    BtnRectangleImage(
-                      width: sizeWidthDrawer,
-                      height: height,
-                      label: 'Cambiar contraseña',
-                      image: 'lib/assets/images/refresh.png',
-                      onTap: () {},
-                    ),
-                    Divider(thickness: 1),
-                    BtnRectangleImage(
-                      width: sizeWidthDrawer,
-                      height: height,
-                      label: 'Contacto',
-                      image: 'lib/assets/images/contact.png',
-                      onTap: () {},
-                    ),
-                    Divider(thickness: 1),
-                    BtnRectangleImage(
-                      width: sizeWidthDrawer,
-                      height: height,
-                      label: 'Validar Telefono',
-                      image: 'lib/assets/images/mobile2.png',
-                      onTap: () {},
-                    ),
-                    Divider(thickness: 1),
-                    BtnRectangleImage(
-                      width: sizeWidthDrawer,
-                      height: height,
-                      label: 'Validar correo electrónico',
-                      image: 'lib/assets/images/mail.png',
-                      onTap: () {},
-                    ),
-                    Divider(thickness: 1),
-                    BtnRectangleImage(
-                      width: sizeWidthDrawer,
-                      height: height,
-                      label: 'Alta usuario BIP',
-                      image: 'lib/assets/images/user.png',
-                      onTap: () {},
-                    ),
-                    Divider(thickness: 1),
-                    BtnRectangleImage(
-                      width: sizeWidthDrawer,
-                      height: height,
-                      label: 'Legales',
-                      image: 'lib/assets/images/agreement.png',
-                      onTap: () {},
-                    ),
-                    //Divider(thickness: 1),
+                   _getCustomDrawer(sizeWidthDrawer, height),
                   ],
                 ),
               )),
@@ -172,12 +130,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
           BtnRectangleImage(
             width: sizeWidthDrawer,
             height: 80,
-            label: 'Cerrar sesión',
-            image: 'lib/assets/images/logout.png',
+            label: CustomDrawerClass.listCustomDrawer[CustomDrawerClass.listCustomDrawer.length-1].label,
+            image: CustomDrawerClass.listCustomDrawer[CustomDrawerClass.listCustomDrawer.length-1].image,
             onTap: () {},
           ),
         ],
       ),
     );
   }
+}
+
+Widget _getCustomDrawer(double width, height) {
+  List<Widget> getCustomDrawerList = [];
+  for (int i = 0; i < CustomDrawerClass.listCustomDrawer.length-1; i++) {
+    getCustomDrawerList.add(BtnRectangleImage(
+      width: width,
+      height: height,
+      label: CustomDrawerClass.listCustomDrawer[i].label,
+      image: CustomDrawerClass.listCustomDrawer[i].image,
+      onTap: () {},
+    ));
+    getCustomDrawerList.add(Divider(thickness: 1));
+  }
+  return Column(mainAxisAlignment: MainAxisAlignment.start,children: getCustomDrawerList);
 }

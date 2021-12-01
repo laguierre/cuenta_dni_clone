@@ -1,3 +1,4 @@
+import 'package:cuenta_dni_clone/src/data/data.dart';
 import 'package:cuenta_dni_clone/src/pages/home_page/home_page.dart';
 import 'package:cuenta_dni_clone/src/utils/constants.dart';
 import 'package:cuenta_dni_clone/src/utils/gradients.dart';
@@ -21,7 +22,6 @@ class _MyAccountPageState extends State<MyAccountPage>
 
   late AnimationController _controllerWhiteLine;
   late AnimationController _controller;
-  double _value = 0.0;
 
   @override
   void initState() {
@@ -63,102 +63,9 @@ class _MyAccountPageState extends State<MyAccountPage>
               children: [
                 Stack(children: [
                   ///Header///
-                  Container(
-                    width: double.infinity,
-                    height: height + _animationContainer.value,
-                    decoration: BoxDecoration(
-                        boxShadow: [kBoxShadow],
-                        gradient: LinearGradient(colors: gradientCuentaDNI),
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(radiusContainerLogin),
-                          bottomRight: Radius.circular(radiusContainerLogin),
-                        )),
-                    child: Stack(children: [
-                      Padding(
-                        padding: EdgeInsets.all(size.height * 0.015),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Stack(children: [
-                              Opacity(
-                                opacity: (1 - _animationOpacity.value),
-                                child: IconButton(
-                                    splashColor: Colors.grey,
-                                    splashRadius: 30,
-                                    icon: Image.asset(
-                                        'lib/assets/images/justification.png',
-                                        color: Colors.white),
-                                    onPressed: () {}),
-                              ),
-                              Opacity(
-                                opacity: _animationOpacity.value,
-                                //_animationOpacity.value,
-                                child: IconButton(
-                                    splashColor: Colors.grey,
-                                    splashRadius: 30,
-                                    icon: Image.asset(
-                                        'lib/assets/images/back.png',
-                                        color: Colors.white),
-                                    onPressed: () {
-                                      _controller.reverse();
-                                      Navigator.of(context)
-                                          .push(PageRouteBuilder(
-                                        transitionDuration:
-                                            Duration(seconds: 1),
-                                        reverseTransitionDuration:
-                                            Duration(microseconds: 300),
-                                        pageBuilder: (context, animation,
-                                                secondaryAnimation) =>
-                                            HomePage(),
-                                        transitionsBuilder: (context, animation,
-                                            secondaryAnimation, child) {
-                                          final tween =
-                                              Tween(begin: 0.0, end: 1.0);
-                                          final fadeAnimation =
-                                              animation.drive(tween);
-                                          return FadeTransition(
-                                            opacity: fadeAnimation,
-                                            child: child,
-                                          );
-                                        },
-                                      ));
-                                    }),
-                              ),
-                            ]),
-                            SvgPicture.asset(
-                              logoCuentaDNI,
-                              color: Colors.white,
-                              height: size.height * 0.09,
-                            ),
-                            Opacity(
-                                opacity: (1 - _animationOpacity.value),
-                                child: IconButton(
-                                    splashColor: Colors.grey,
-                                    splashRadius: 30,
-                                    icon: Image.asset(
-                                      'lib/assets/images/notification-bell.png',
-                                      color: Colors.white,
-                                      height: 50,
-                                    ),
-                                    onPressed: () {})),
-                          ],
-                        ),
-                      ),
-                    ]),
-                  ),
-
+                  _Header(height: height, animationContainer: _animationContainer, size: size, animationOpacity: _animationOpacity, controller: _controller),
                   ///White Line///
-                  Positioned(
-                    top: height * 0.57,
-                    child: Opacity(
-                      opacity: 1 - _animationWhiteContainer.value,
-                      child: Container(
-                        height: 2,
-                        width: size.width,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                  _WhiteLine(height: height, animationWhiteContainer: _animationWhiteContainer, size: size),
                   Positioned(
                     right: size.width * 0.075,
                     top: size.height * 0.16,
@@ -168,99 +75,8 @@ class _MyAccountPageState extends State<MyAccountPage>
                           size: 30, color: Colors.white),
                     ),
                   ),
-
                   ///Data Card///
-                  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.035),
-                      child: Opacity(
-                        opacity: _animationOpacity.value,
-                        child: Stack(
-                          children: [
-                            Transform.scale(
-                              ///White Container///
-                              scale: _animationOpacity.value,
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                    top: size.height *
-                                            0.40 *
-                                            _animationOpacity.value +
-                                        size.height *
-                                            0.25 *
-                                            (1 - _animationOpacity.value)),
-                                height: (size.height *
-                                    0.15 *
-                                    _animationOpacity.value),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.white,
-                                    boxShadow: [kBoxShadow]),
-                                child: Container(
-                                  margin:
-                                      EdgeInsets.only(top: size.height * 0.065),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'lib/assets/images/share.png',
-                                        height: size.height * 0.04,
-                                      ),
-                                      const Text(
-                                        'Compartar datos de la cuenta',
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(top: size.height * 0.15),
-                              height: (size.height *
-                                  0.32 *
-                                  _animationOpacity.value),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  gradient:
-                                      LinearGradient(colors: gradientCuentaDNI),
-                                  boxShadow: [kBoxShadow]),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(top: size.height * 0.016, left: size.width*0.035),
-                                        child: Text(accountCA,
-                                            style: TextStyle(
-                                                fontSize: size.height * 0.027,
-                                                color: Colors.white)),
-                                      ),
-                                      SizedBox(height: size.height * 0.09),
-                                      const Divider(
-                                          thickness: 2, color: Colors.white54),
-                                      const _label(
-                                          label: 'Alias',
-                                          data: 'PAPA.PIPO.POPO'),
-                                      const Divider(
-                                          thickness: 2, color: Colors.white54),
-                                      const _label(
-                                          label: 'CBU',
-                                          data: '454546554753455674'),
-                                      const Divider(
-                                          thickness: 2, color: Colors.white54),
-                                      const _label(
-                                          label: 'CUIL', data: '2045584545'),
-                                    ]),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
+                  _DataCard(size: size, animationOpacity: _animationOpacity),
                   _TextTranslate(size, height),
                 ]),
                 Padding(
@@ -303,15 +119,10 @@ class _MyAccountPageState extends State<MyAccountPage>
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              for(int i = 0; i < SquareImageAndTextBtn.listSquareImageAndTextBtn.length; ++i)
                               BtnSquareImageAndText(
-                                  image: 'lib/assets/images/sharing.png',
-                                  label: 'Solicitar a\notro usuario', height: size.height* 0.12, width: size.width * 0.22),
-                              BtnSquareImageAndText(
-                                  image: 'lib/assets/images/bank.png',
-                                  label: 'Sucursal\nBanco', height: size.height* 0.12, width: size.width * 0.22),
-                              BtnSquareImageAndText(
-                                  image: 'lib/assets/images/transfer.png',
-                                  label: 'Transferencia', height: size.height* 0.12, width: size.width * 0.22),
+                                  image: SquareImageAndTextBtn.listSquareImageAndTextBtn[i].image,
+                                  label: SquareImageAndTextBtn.listSquareImageAndTextBtn[i].label, height: size.height* 0.12, width: size.width * 0.22),
                             ],
                           )
                         ],
@@ -367,6 +178,231 @@ class _MyAccountPageState extends State<MyAccountPage>
   }
 }
 
+class _DataCard extends StatelessWidget {
+  const _DataCard({
+    Key? key,
+    required this.size,
+    required Animation<double> animationOpacity,
+  }) : _animationOpacity = animationOpacity, super(key: key);
+
+  final Size size;
+  final Animation<double> _animationOpacity;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.035),
+        child: Opacity(
+          opacity: _animationOpacity.value,
+          child: Stack(
+            children: [
+              Transform.scale(
+                ///White Container///
+                scale: _animationOpacity.value,
+                child: Container(
+                  margin: EdgeInsets.only(
+                      top: size.height *
+                              0.40 *
+                              _animationOpacity.value +
+                          size.height *
+                              0.25 *
+                              (1 - _animationOpacity.value)),
+                  height: (size.height *
+                      0.15 *
+                      _animationOpacity.value),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
+                      boxShadow: [kBoxShadow]),
+                  child: Container(
+                    margin:
+                        EdgeInsets.only(top: size.height * 0.065),
+                    child: Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment:
+                          CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/assets/images/share.png',
+                          height: size.height * 0.04,
+                        ),
+                        const Text(
+                          'Compartar datos de la cuenta',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(top: size.height * 0.15),
+                height: (size.height *
+                    0.32 *
+                    _animationOpacity.value),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient:
+                        LinearGradient(colors: gradientCuentaDNI),
+                    boxShadow: [kBoxShadow]),
+                child: SingleChildScrollView(
+                  child: Column(
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: size.height * 0.016, left: size.width*0.035),
+                          child: Text(accountCA,
+                              style: TextStyle(
+                                  fontSize: size.height * 0.027,
+                                  color: Colors.white)),
+                        ),
+                        SizedBox(height: size.height * 0.09),
+                        _getAccountData(),
+                      ]),
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+}
+
+class _WhiteLine extends StatelessWidget {
+  const _WhiteLine({
+    Key? key,
+    required this.height,
+    required Animation<double> animationWhiteContainer,
+    required this.size,
+  }) : _animationWhiteContainer = animationWhiteContainer, super(key: key);
+
+  final double height;
+  final Animation<double> _animationWhiteContainer;
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: height * 0.57,
+      child: Opacity(
+        opacity: 1 - _animationWhiteContainer.value,
+        child: Container(
+          height: 2,
+          width: size.width,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header({
+    Key? key,
+    required this.height,
+    required Animation<double> animationContainer,
+    required this.size,
+    required Animation<double> animationOpacity,
+    required AnimationController controller,
+  }) : _animationContainer = animationContainer, _animationOpacity = animationOpacity, _controller = controller, super(key: key);
+
+  final double height;
+  final Animation<double> _animationContainer;
+  final Size size;
+  final Animation<double> _animationOpacity;
+  final AnimationController _controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: height + _animationContainer.value,
+      decoration: BoxDecoration(
+          boxShadow: [kBoxShadow],
+          gradient: LinearGradient(colors: gradientCuentaDNI),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(radiusContainerLogin),
+            bottomRight: Radius.circular(radiusContainerLogin),
+          )),
+      child: Stack(children: [
+        Padding(
+          padding: EdgeInsets.all(size.height * 0.015),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Stack(children: [
+                Opacity(
+                  opacity: (1 - _animationOpacity.value),
+                  child: IconButton(
+                      splashColor: Colors.grey,
+                      splashRadius: 30,
+                      icon: Image.asset(
+                          'lib/assets/images/justification.png',
+                          color: Colors.white),
+                      onPressed: () {}),
+                ),
+                Opacity(
+                  opacity: _animationOpacity.value,
+                  //_animationOpacity.value,
+                  child: IconButton(
+                      splashColor: Colors.grey,
+                      splashRadius: 30,
+                      icon: Image.asset(
+                          'lib/assets/images/back.png',
+                          color: Colors.white),
+                      onPressed: () {
+                        _controller.reverse();
+                        Navigator.of(context)
+                            .push(PageRouteBuilder(
+                          transitionDuration:
+                              const Duration(seconds: 1),
+                          reverseTransitionDuration:
+                              const Duration(microseconds: 300),
+                          pageBuilder: (context, animation,
+                                  secondaryAnimation) =>
+                              const HomePage(),
+                          transitionsBuilder: (context, animation,
+                              secondaryAnimation, child) {
+                            final tween =
+                                Tween(begin: 0.0, end: 1.0);
+                            final fadeAnimation =
+                                animation.drive(tween);
+                            return FadeTransition(
+                              opacity: fadeAnimation,
+                              child: child,
+                            );
+                          },
+                        ));
+                      }),
+                ),
+              ]),
+              SvgPicture.asset(
+                logoCuentaDNI,
+                color: Colors.white,
+                height: size.height * 0.09,
+              ),
+              Opacity(
+                  opacity: (1 - _animationOpacity.value),
+                  child: IconButton(
+                      splashColor: Colors.grey,
+                      splashRadius: 30,
+                      icon: Image.asset(
+                        'lib/assets/images/notification-bell.png',
+                        color: Colors.white,
+                        height: 50,
+                      ),
+                      onPressed: () {})),
+            ],
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
 class _label extends StatelessWidget {
   const _label({Key? key, required this.label, required this.data})
       : super(key: key);
@@ -400,4 +436,18 @@ class _label extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _getAccountData() {
+  List<Widget> getAccountDataList = [];
+  for (int i = 0; i < LabelCBU.listLabelCBU.length; i++) {
+    getAccountDataList.add(
+      const Divider(
+          thickness: 2, color: Colors.white54),
+    );
+    getAccountDataList.add(_label(
+        label: LabelCBU.listLabelCBU[i].label,
+        data: LabelCBU.listLabelCBU[i].data));
+  }
+  return Wrap(children: getAccountDataList);
 }

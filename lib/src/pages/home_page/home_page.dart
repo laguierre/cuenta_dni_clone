@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage>
         child: Scaffold(
             backgroundColor: kBackgroundColor,
             body: Stack(
-              alignment: Alignment.topCenter,
+              alignment: Alignment.topLeft,
               children: [
                 SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -421,7 +421,7 @@ class _SendRecieveBtn extends StatelessWidget {
                       'lib/assets/images/money-withdrawal.png',
                       height: size.height * 0.043,
                     ),
-                    Text(
+                    const Text(
                       'Enviar dinero',
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     )
