@@ -24,7 +24,7 @@ class LogInPage extends StatelessWidget {
                 width: double.infinity,
                 height: heightContainer,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         bottomRight: Radius.circular(radiusContainerLogin),
                         bottomLeft: Radius.circular(radiusContainerLogin)),
                     gradient: LinearGradient(colors: gradientCuentaDNI)),
@@ -32,13 +32,13 @@ class LogInPage extends StatelessWidget {
                     color: Colors.white, height: size.height * 0.13)),
             Positioned(
                 top: heightAvatar,
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundImage: AssetImage(avatarCuentaDNI),
                   radius: radiusAvatar,
                 )),
             Positioned(
                 top: heightAvatar + 150,
-                child: Text(
+                child: const Text(
                   '¡Hola Juan Carlos Perez!',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                 )),
@@ -75,11 +75,11 @@ class _PasswordLogIn extends StatelessWidget {
           children: [
             Container(
               width: widthColumn,
-              child: _Inputs(),
+              child: const _Inputs(),
             ),
             SizedBox(height: size.height * 0.02),
             TextButton(
-              child: Text("Olvidé mi contraseña",
+              child: const Text("Olvidé mi contraseña",
                   style: TextStyle(color: Colors.black, fontSize: 20)),
               onPressed: () {},
             ),
@@ -93,7 +93,7 @@ class _PasswordLogIn extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(kBorderRadius),
                         topRight: Radius.circular(kBorderRadius))),
-                child: Text('Ingresar',
+                child: const Text('Ingresar',
                     style: TextStyle(color: Colors.white, fontSize: 22))),
             SizedBox(height: size.height * 0.03),
             Container(
@@ -144,13 +144,13 @@ class _Inputs extends StatelessWidget {
         hintStyle: TextStyle(fontSize: size.height * 0.03),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               width: 3,
               color: Colors.black,
             )),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(width: 3, color: Colors.black)),
+            borderSide: const BorderSide(width: 3, color: Colors.black)),
       )),
     );
   }
