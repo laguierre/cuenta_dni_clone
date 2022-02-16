@@ -238,7 +238,7 @@ class _HomePageState extends State<HomePage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(height: 12),
+                      SizedBox(height: size.height * 0.015),
                       IconButton(
                           splashColor: Colors.grey,
                           splashRadius: 30,

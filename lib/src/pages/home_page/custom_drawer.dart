@@ -126,7 +126,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ],
                 ),
               )),
-          Divider(thickness: 1),
+          const Divider(thickness: 1),
           BtnRectangleImage(
             width: sizeWidthDrawer,
             height: 80,
@@ -150,7 +150,7 @@ Widget _getCustomDrawer(double width, height) {
       image: CustomDrawerClass.listCustomDrawer[i].image,
       onTap: () {},
     ));
-    getCustomDrawerList.add(Divider(thickness: 1));
+    getCustomDrawerList.add(const Divider(thickness: 1));
   }
   return Column(mainAxisAlignment: MainAxisAlignment.start,children: getCustomDrawerList);
 }
