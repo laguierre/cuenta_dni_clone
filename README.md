@@ -2,7 +2,7 @@
 
 Cuenta DNI App Clone wrote in Flutter.
 
-## Getting Started
+## General Info
 
 **Packages used:**
 
@@ -11,12 +11,14 @@ Cuenta DNI App Clone wrote in Flutter.
 - smooth_page_indicator: ^1.0.0+2 [link](https://pub.dev/packages/smooth_page_indicator)
 
 Cuenta DNI is mobile bank application. I tried to clone it and I added another features too. There is a lot of work to do, but is a start. 
-As a newby I didn't use provider or any manager, the main idea was practice some animations and general practices. 
+As a newbie I didn't use provider or any manager, the main idea was practice some animations and general practices. 
+In the screenshots folder there are more images. The GIFs ware captured using AVD. 
 
 ## GIF
-![GIF](https://github.com/laguierre/plant_app/blob/master/screenshots/plant%20app.gif)
+![GIF](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif)
+![GIF](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif)
 ## Screenshots
-![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshots/2.png)
-![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshots/3.png)
-![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshots/4.png)
-![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshotsdkmanagersdkmanagers/5.png)
+![Screanshot](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953358.png)
+![Screanshot](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953381.png)
+![Screanshot](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953431.png)
+![Screanshot](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953441.png)
