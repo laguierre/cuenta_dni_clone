@@ -73,7 +73,7 @@ class _PasswordLogIn extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: widthColumn,
               child: const _Inputs(),
             ),

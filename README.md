@@ -1,16 +1,22 @@
-# cuenta_dni_clone
+# Cuenta DNI Clone
 
-A new Flutter project.
+Cuenta DNI App Clone wrote in Flutter.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+**Packages used:**
 
-A few resources to get you started if this is your first Flutter project:
+- flutter_svg: [link](https://pub.dev/packages/flutter_svg)
+- font_awesome_flutter: ^9.2.0 [link](https://pub.dev/packages/font_awesome_flutter)
+- smooth_page_indicator: ^1.0.0+2 [link](https://pub.dev/packages/smooth_page_indicator)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Cuenta DNI is mobile bank application. I tried to clone it and I added another features too. There is a lot of work to do, but is a start. 
+As a newby I didn't use provider or any manager, the main idea was practice some animations and general practices. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## GIF
+![GIF](https://github.com/laguierre/plant_app/blob/master/screenshots/plant%20app.gif)
+## Screenshots
+![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshots/2.png)
+![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshots/3.png)
+![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshots/4.png)
+![Screanshot](https://github.com/laguierre/plant_app/blob/master/screenshotsdkmanagersdkmanagers/5.png)
