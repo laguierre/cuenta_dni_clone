@@ -16,14 +16,14 @@ In the screenshots folder there are more images. The GIFs ware captured using AV
 
 ## GIF
 <p align="center">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif" height="800">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif" height="800">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif" height="700">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif" height="700">
 </p>
 
 ## Screenshots
 <p align="center">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953358.png" height="800">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953381.png" height="800">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953431.png" height="800">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953441.png" height="800">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953358.png" height="700">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953381.png" height="700">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953431.png" height="700">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953441.png" height="700">
 </p>
