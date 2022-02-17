@@ -16,9 +16,12 @@ In the screenshots folder there are more images. The GIFs ware captured using AV
 
 ## GIF
 <p float="middle">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif" height="600">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif" height="600">
+</p>
 ![GIF](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif)
 ![GIF](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif)
-</p>
+
 ## Screenshots
 <p float="middle">
 <img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953358.png" height="600">
