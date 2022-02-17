@@ -12,7 +12,7 @@ Cuenta DNI App Clone wrote in Flutter.
 
 Cuenta DNI is mobile bank application. I tried to clone it and I added another features too. There is a lot of work to do, but is a start. 
 As a newbie I didn't use provider or any manager, the main idea was practice some animations and general practices. 
-In the screenshots folder there are more images. The GIFs ware captured using AVD. 
+In the screenshots folder there are more images [link](https://github.com/laguierre/cuenta_dni_clone/tree/master/screenshots). The GIFs ware captured using AVD. 
 
 ## GIF
 <p align="center">
