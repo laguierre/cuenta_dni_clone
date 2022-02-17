@@ -15,17 +15,15 @@ As a newbie I didn't use provider or any manager, the main idea was practice som
 In the screenshots folder there are more images. The GIFs ware captured using AVD. 
 
 ## GIF
-<p float="middle">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif" height="600">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif" height="600">
+<p align="center">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif" height="800">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif" height="800">
 </p>
-![GIF](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/intro.gif)
-![GIF](https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/body.gif)
 
 ## Screenshots
-<p float="middle">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953358.png" height="600">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953381.png" height="600">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953431.png" height="600">
-<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953441.png" height="600">
+<p align="center">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953358.png" height="800">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953381.png" height="800">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953431.png" height="800">
+<img src="https://github.com/laguierre/cuenta_dni_clone/blob/master/screenshots/Screenshot_1644953441.png" height="800">
 </p>
